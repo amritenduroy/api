@@ -11,11 +11,11 @@ jwt = JWT(app=app, authentication_handler=authenticate, identity_handler=identit
 
 class Movie(Resource):
     @jwt_required
-    def get(self, name):
-        return {'movie': name}
+    def get(self):
+        return {'movie': "RHTDM"}
 
 
-api.add_resource(Movie, '/movie/<name>')
+api.add_resource(Movie, '/movie/')
 
 app.run(port=5000, debug=True)
 
