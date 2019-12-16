@@ -10,7 +10,7 @@ api = Api(app)
 jwt = JWT(app=app, authentication_handler=authenticate, identity_handler=identity)
 
 class Movie(Resource):
-    @jwt_required
+    @jwt_required()
     def get(self, name):
         return {'movie': name}, 200
 
