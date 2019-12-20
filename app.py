@@ -1,7 +1,8 @@
 from flask import Flask
-from flask_restful import Resource, Api
-from flask_jwt import JWT, jwt_required
-from security import authenticate, identity
+from flask_restful import Api
+from flask_jwt import JWT
+from model.security import authenticate, identity
+from resource.books import Book
 
 app = Flask(__name__)
 app.secret_key = "abcd1234"
@@ -9,13 +10,7 @@ api = Api(app)
 
 jwt = JWT(app=app, authentication_handler=authenticate, identity_handler=identity)
 
-class Movie(Resource):
-    @jwt_required()
-    def get(self, name):
-        return {'movie': name}, 200
-
-
-api.add_resource(Movie, '/movie/<string:name>')
+api.add_resource(Book, '/book/<string:isbn>')
 
 app.run(port=5000, debug=True)
 
