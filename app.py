@@ -10,7 +10,7 @@ api = Api(app)
 
 jwt = JWT(app=app, authentication_handler=authenticate, identity_handler=identity)
 
-api.add_resource(Book, '/book/<string:isbn>')
+api.add_resource(Book, '/book/isbn/<string:isbn>')
 
 app.run(port=5000, debug=True)
 
